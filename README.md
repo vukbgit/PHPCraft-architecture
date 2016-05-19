@@ -3,7 +3,7 @@
 guide lines for PHPCraft `WORK IN PROGRESS`
 
 ## Principles
-### Organization
+### Hierarchy
 * application (at least 1 area)
 * area: group of sections that share logic (i.e. account login) and/or visual layout (at least 1 section)
 * section: groups operations and/or views about the same subject (at least 1 action)
