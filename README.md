@@ -56,6 +56,7 @@ Folders should be organized according to vertical and horizontal logic as more c
       * router.php _instantiate the router class and handles routing logic_
     * src
       * form.scss _sass file for standard forms style_
+      * list.scss _sass file for standard lists style_
   * acme
     * conf
       * acme.ini _application settings_
@@ -64,12 +65,27 @@ Folders should be organized according to vertical and horizontal logic as more c
       * Subject1.php _library to handle subject 1 logic_
       * Subject2.php _library to handle subject 2 logic_
     * locale
-      *it
-        *subject1.ini _translations for subject 1_
-        *subject2.ini _translations for subject 2_
-      *en
-        *subject1.ini _translations for subject 1_
-        *subject2.ini _translations for subject 2_
+      * it
+        * subject1.ini _translations for subject 1_
+        * subject2.ini _translations for subject 2_
+      * en
+        * subject1.ini _translations for subject 1_
+        * subject2.ini _translations for subject 2_
+    * templates
+      * backend _templates for backend area_
+        * subject1 _templates for subject 1_
+          * saveForm.html
+          * list.html
+        * subject2 _templates for subject 2_
+          * saveForm.html
+          * list.html
+        * form.html _parent template of all fomrs_
+        * list.html _parent template of all lists_ 
+      * frontend _templates for frontend area_
+        * home.html
+        * subject1.html
+        * subject2.html
+      * header.html _header template common to whole application_
 
 * public
 
