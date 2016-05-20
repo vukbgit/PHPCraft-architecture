@@ -86,8 +86,11 @@ Folders should be organized according to vertical and horizontal logic as more c
         * subject1.html
         * subject2.html
       * header.html _header template common to whole application_
-
 * public
+  * acme
+    * lib
+      * acme.js
+      * third-part-js-library-folder _not included through composer_
 
 ### Special Folders
 * __secret__: files used for application developement and mantainence; folder is http protected
