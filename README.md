@@ -34,7 +34,7 @@ An application contains at least one area, a area contains at least one subject,
 * __application level__: all the code specific to an __application__
 
 ### Function
-* __conf__: file that store __application__ informations tipically in key-value pairs (i.e. ini format) or json
+* __conf__: file that store __application__ informations tipically in simple key-value pairs (i.e. ini format) or json and php files (depending on the technology that are going to consume the files) for more complex structures
 * __procedures__: files that contain a coherent portion of domain logic implemented through procedural code, criteria of allocation could be:
   * functional,  i.e. user authentication
   * hierarchical, i.e. __subject__ logic
