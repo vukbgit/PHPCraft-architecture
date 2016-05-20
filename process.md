@@ -3,7 +3,8 @@
   * allow .htacces files use
 
 ### Basic folders and files
-* into site root make a folder named __private__ with the subfolders __conf__ and __procedures__
+* into site root make a folder named __private__ with the subfolders __global__ and __application-name__
+* into __private/application-name__ folder make the subfolders __conf__ and __procedures__
 * make file __private/.htaccess__ and prevent direct access to contained files:
 ```
 # Order Deny,Allow
@@ -11,13 +12,13 @@ deny from all
 ```
 * make the main configuration file which contains informations likely to be needed by every application (i.e. domains definition, database account), for portability it's useful to name it 'application', it has a tree structure so a php or json file is needed (use json if it has to be red by different technologies like PHP and js).
   make __private/application-name/conf/application.php__ (values to be adapted)
-  ```php
-  <?php
+```php
+<?php
 return [
     'contacts' => [
-        'tech' => 'tech-email-address'
+        'tech' => 'tech-email-address' //used into friendly exceptions
     ],
-    'domains' => [
+    'domains' => [ //set environment based on requested domain (when possible)
         'dev.your-domain.tld' => [
             'environment' => 'development'
         ],
@@ -26,8 +27,8 @@ return [
         ]
     ],
     'basePath' => '/',
-    'languages' => ['it','en'],
-    'database' => [
+    'languages' => ['it','en'], //implemented languages
+    'database' => [ //database account (when present)
         'driver' => '_mysql_',
         'host' => '_localhost_',
         'username' => '_db-username_',
@@ -36,7 +37,7 @@ return [
     ]
 ];
 ```
-* make the bootstrap file __private/procedures/application-name.bootstrap.php__ with some test code:
+* make the bootstrap file __private/application-name/procedures/bootstrap.php__ with some test code:
 ```php
 <?php
 echo 'test bootstrap file';
