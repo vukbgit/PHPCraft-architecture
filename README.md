@@ -34,11 +34,13 @@ An application contains at least one area, a area contains at least on subject, 
 
 ### Function
 * __configuration__: file that store application informations tipically in key-value pairs (i.e. ini format) or json
-* __lib__: libraries, (i.e. PHP or js) do not included in composer
+* __lib__: libraries, (i.e. PHP or js) do not included in composer, both developed specifically for application or by third part
 * __locale__: translations
 * __templates__
+* __src__: files that are source for specific tasks but are not to be directly used into application, such as sass .scss files
 
-* technology specific: i.e. __sass__
+### Internazionalization
+In context where files contain text to be exposed should be always used langauge specific folders and files. Folders should be nominated by language code (i.e. 'en' or 'en_UK'). Language codes should follow a [convention](https://en.wikipedia.org/wiki/Language_code).
 
 ## Filesystem
 Folders should be organized according to vertical and horizontal logic as more convenient. An example for 'Acme' application:
@@ -46,5 +48,8 @@ Folders should be organized according to vertical and horizontal logic as more c
   --global
   --acme
 --public
+### Special Folders
+* __secret__: files used for application developement and mantainence; folder is http protected
+* __vendor__: composer folder for storing libraries
 
 ## .htacces
