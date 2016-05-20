@@ -44,10 +44,11 @@ In context where files contain text to be exposed should be always used langauge
 
 ## Filesystem
 Folders should be organized according to vertical and horizontal logic as more convenient. An example for 'Acme' application:
---private
-  --global
-  --acme
---public
+* private
+  * global
+  * acme
+*public
+
 ### Special Folders
 * __secret__: files used for application developement and mantainence; folder is http protected
 * __vendor__: composer folder for storing libraries
