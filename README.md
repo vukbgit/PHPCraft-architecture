@@ -51,7 +51,7 @@ Folders should be organized according to vertical and horizontal logic as more c
 * private
   * global
     * procedures
-      *environment.php: handles developement/production logic
+      * environment.php: handles developement/production logic
   * acme
 * public
 
