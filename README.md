@@ -24,7 +24,6 @@ The following considerations apply primarily to a Linux + Apache + PHP environme
 An application contains at least one area, a area contains at least on subject, one subject contains at least one action
 
 ### Horizontal
-
 #### Scope
 * __private__: files protected (by .htaccess rules and/or login) from direct browser access
 * __public__: files that can be requested by browser
@@ -34,5 +33,6 @@ An application contains at least one area, a area contains at least on subject, 
 * __application level__: all the code specific to an application
 
 ## Filesystem
+
 
 ## .htacces
