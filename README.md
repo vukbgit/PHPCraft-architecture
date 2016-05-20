@@ -51,7 +51,10 @@ Folders should be organized according to vertical and horizontal logic as more c
 * private
   * global
     * procedures
-      * environment.php: handles developement/production logic
+      * environment.php _handles developement/production logic_
+      * http.php _instantiate the http adapter class_
+    * src
+     * form.scss __sass file for standard forms__
   * acme
 * public
 
