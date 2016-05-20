@@ -23,7 +23,7 @@ The following considerations apply primarily to a Linux + Apache + PHP environme
  
 An application contains at least one area, a area contains at least on subject, one subject contains at least one action
 
-### Horizontal
+### Horizontal Criteria
 #### Scope
 * __private__: files protected (by .htaccess rules and/or login) from direct browser access
 * __public__: files that can be requested by browser
@@ -32,7 +32,19 @@ An application contains at least one area, a area contains at least on subject, 
 * __global__: all the code shared between different applications
 * __application level__: all the code specific to an application
 
-## Filesystem
+### Function
+* __configuration__: file that store application informations tipically in key-value pairs (i.e. ini format) or json
+* __lib__: libraries, (i.e. PHP or js) do not included in composer
+* __locale__: translations
+* __templates__
 
+* technology specific: i.e. __sass__
+
+## Filesystem
+Folders should be organized according to vertical and horizontal logic as more convenient. An example for 'Acme' application:
+--private
+  --global
+  --acme
+--public
 
 ## .htacces
