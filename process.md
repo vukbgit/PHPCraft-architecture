@@ -15,7 +15,7 @@ deny from all
   <?php
 return [
     'contacts' => [
-        'tech' => 'tech-email-address' //
+        'tech' => 'tech-email-address'
     ],
     'domains' => [
         'dev.your-domain.tld' => [
@@ -35,7 +35,7 @@ return [
         'database' => '_db-name_'
     ]
 ];
-  ```
+```
 * make the bootstrap file __private/procedures/application-name.bootstrap.php__ with some test code:
 ```php
 <?php
