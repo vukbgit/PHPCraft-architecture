@@ -17,9 +17,11 @@ The following considerations apply primarily to a Linux + Apache + PHP environme
 
 ### Vertical Hierarchy (top down)
 * application: the set of code that implements a certain domain logic
-* area: the set of code into an application that implements a  logic (i.e. account login) and/or visual layout (at least 1 section)
-* section: groups operations and/or views about the same subject (at least 1 action)
-* action: a piece of business logic and/or a view to display data called by an URL
+* area: a set of pages code into an application with at least one strong common trait  (i.e. behind login,  page layout)
+* subject: a set of pages that performs operations about the same coherent portion of domain logic (i.e. products, customers)
+* action: the set of operations performed by the page over the subject
+ 
+An application contains at least one area, a area contains at least on subject, one subject contains at least one action
 
 ### Horizontal
 
