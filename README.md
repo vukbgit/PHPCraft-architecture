@@ -34,9 +34,12 @@ An application contains at least one area, a area contains at least on subject, 
 
 ### Function
 * __configuration__: file that store application informations tipically in key-value pairs (i.e. ini format) or json
+* __procedures__: files that contain a coherent portion of domain logic implemented through procedural code, criteria of allocation could be:
+  * functional,  i.e. user authentication
+  * hierarchical, i.e. __subject__ logic
 * __lib__: libraries, (i.e. PHP or js) do not included in composer, both developed specifically for application or by third part
-* __locale__: translations
 * __templates__
+* __locale__: translations
 * __src__: files that are source for specific tasks but are not to be directly used into application, such as sass .scss files
 
 ### Internazionalization
@@ -47,7 +50,7 @@ Folders should be organized according to vertical and horizontal logic as more c
 * private
   * global
   * acme
-*public
+* public
 
 ### Special Folders
 * __secret__: files used for application developement and mantainence; folder is http protected
