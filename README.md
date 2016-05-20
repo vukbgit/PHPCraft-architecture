@@ -12,7 +12,7 @@ The following considerations apply primarily to a Linux + Apache + PHP environme
 ## Principles
 * __DRY__ (Do not Repeat Yourself): write every piece of information once
 * __greedy__: do not load, include, define, instance any resource that is not going to be effectively used by the page
-* __free__: avoid exclusive dependency form third party library, handle dependency thorugh [adapter pattern](https://en.wikipedia.org/wiki/Adapter_pattern) custom classes
+* __free__: when a third part library is used, avoid tight dependency thorugh [adapter pattern](https://en.wikipedia.org/wiki/Adapter_pattern) custom classes
 
 ## Code organization
 
@@ -34,7 +34,7 @@ An application contains at least one area, a area contains at least one subject,
 * __application level__: all the code specific to an __application__
 
 ### Function
-* __configuration__: file that store __application__ informations tipically in key-value pairs (i.e. ini format) or json
+* __conf__: file that store __application__ informations tipically in key-value pairs (i.e. ini format) or json
 * __procedures__: files that contain a coherent portion of domain logic implemented through procedural code, criteria of allocation could be:
   * functional,  i.e. user authentication
   * hierarchical, i.e. __subject__ logic
@@ -52,10 +52,25 @@ Folders should be organized according to vertical and horizontal logic as more c
   * global
     * procedures
       * environment.php _handles developement/production logic_
-      * http.php _instantiate the http adapter class_
+      * http.php _instantiate the http class_
+      * router.php _instantiate the router class and handles routing logic_
     * src
-      * form.scss __sass file for standard forms__
+      * form.scss _sass file for standard forms style_
   * acme
+    * conf
+      * acme.ini _application settings_
+      * routes.php _routes definition_
+    * lib
+      * Subject1.php _library to handle subject 1 logic_
+      * Subject2.php _library to handle subject 2 logic_
+    * locale
+      *it
+        *subject1.ini _translations for subject 1_
+        *subject2.ini _translations for subject 2_
+      *en
+        *subject1.ini _translations for subject 1_
+        *subject2.ini _translations for subject 2_
+
 * public
 
 ### Special Folders
