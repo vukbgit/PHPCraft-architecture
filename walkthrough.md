@@ -51,7 +51,7 @@ echo 'test application bootstrap file';
 * into site root make a folder named __public__ with subfolder __application-name__
 * into __public/application-name__ make the subfolder __procedures__
 * make file __public/application-name/procedures/index.php__:
-  * store the name of the application (from now on 'application-name') and the relative path from __index.php__ to the top level of application. These informations are used from this point till the end of the script so they must be defined here
+  * store the name of the application and the relative path from __index.php__ to the top level of application. These informations are used from this point till the end of the script so they must be defined here
   * include the bootstrap file
 ```php
 <?php
