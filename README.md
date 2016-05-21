@@ -1,7 +1,7 @@
 # PHPCraft-manifest `A WORK IN PROGRESS`
 
 ## Goal
-Expose considerations and solutions about writing websites without using a framework.
+Expose considerations and solutions about writing efficient, up-to-date, small-to-medium websites without using a framework.
 
 ## Acknowledgement
 This is a work based on my experience 'on the field' but many of the ideas and the base for a more structured and modern approach came indisputably from the [Patrick Louys no framework tutorial](https://github.com/PatrickLouys/no-framework-tutorial), thank you.
