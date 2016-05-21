@@ -1,18 +1,24 @@
-# PHPCraft-architecture
+# PHPCraft-manifest, a `WORK IN PROGRESS`
 
-guide lines for PHPCraft `WORK IN PROGRESS`
+## Goal
+Expose considerations and solutions about writing websites without using a framework.
 
 ## Premises
-The following considerations apply primarily to a Linux + Apache + PHP environment
+The following considerations apply primarily to a Linux + Apache + PHP environment even if, at least part of them, could be extended to other technologies and platforms.
 
 ## Definitions
 * __resource__: any file referent of an URI 
 * __page__: a set of resources accessed through a route that displays and/or performs a piece of domain logic
 
 ## Principles
-* __DRY__ (Do not Repeat Yourself): write every piece of information once
-* __greedy__: do not load, include, define, instance any resource that is not going to be effectively used by the page
-* __free__: when a third part library is used, avoid tight dependency thorugh [adapter pattern](https://en.wikipedia.org/wiki/Adapter_pattern) custom classes
+1. __be organized__: choose and define rules and follow them for files organization and code writing
+2. __be clear__: code organization and name conventions must be understandable
+3. __be free__: it must be possible to develop every page without restrictions
+4. __be tidy__ every piece of information must be written once and in the appropriate place
+5. __be frugal__: just load, include, define, instance only resources that are really going to be used by the page
+6. __be indipendent__: when a third part library is used, avoid tight dependency thorugh [adapter pattern](https://en.wikipedia.org/wiki/Adapter_pattern) custom classes
+7. __enjoy__: write code that is comfortable for YOU to use
+8. __recycle__: use code you ha written for past applications and write code that you can used in future applications
 
 ## Code organization
 
