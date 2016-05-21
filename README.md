@@ -64,8 +64,6 @@ My current choice is:
       * area folder (if necessary)
         * subject folder (if necessary)
 
-, for example do not put at top level __private__ and __public__ folders but __global__ and __acme__ ones instead and fork inside them private and public code but it would be necessary to write two .htaccess files (instead of just one) to forbid access to private code. 
-
 An example for 'Acme' application:
 * private
   * .htaccess _to prevent direct client access to contained files_
@@ -115,14 +113,7 @@ An example for 'Acme' application:
       * acme.js
       * third-part-js-library-folder _not included through composer_
 
-
-
-So for example
-* private
-  * global
-  * application-name
-  * 
-* public
+A variant could be not to put into top level __private__ and __public__ folders but __global__ and __acme__ ones instead and fork inside them private and public code but it would be necessary to write two .htaccess files (instead of just one) to forbid access to private code.
 
 ### Special Folders
 * __secret__: files used for application developement and mantainence; folder is http protected
