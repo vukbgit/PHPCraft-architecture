@@ -36,6 +36,9 @@ Follow these rules in order: apply each rule as long as it does not conflict wit
 An application contains at least one area, an area contains at least one subject, a subject contains at least one action
 
 ### Horizontal Criteria
+#### Environment
+* __development__
+* __production__
 #### Scope
 * __private__: files protected (by .htaccess rules) from direct browser access
 * __public__: files that can be requested by browser
