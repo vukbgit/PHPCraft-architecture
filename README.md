@@ -42,14 +42,14 @@ An application contains at least one area, an area contains at least one subject
 * __application level__: all the code specific to an __application__
 
 #### Function
-* __conf__: file that store __application__ informations tipically in simple key-value pairs (i.e. ini format) or json and php files for more complex structures (depending on the technologies that are going to consume the files, there is [discussion](http://stackoverflow.com/questions/17666728/load-website-configuration-from-json-or-php-file) about which one is better...) 
+* __configurations__: file that store __application__ informations tipically in simple key-value pairs (i.e. ini format) or json and php files for more complex structures (depending on the technologies that are going to consume the files, there is [discussion](http://stackoverflow.com/questions/17666728/load-website-configuration-from-json-or-php-file) about which one is better...) 
 * __procedures__: files that contain a coherent portion of domain logic implemented through procedural code, criteria of allocation could be:
   * functional,  i.e. user authentication
   * hierarchical, i.e. __subject__ logic
-* __lib__: libraries, (i.e. PHP or js) do not included in composer, both developed specifically for __application__ or by third part
+* __libraries__: libraries, (i.e. PHP or js) do not included in composer, both developed specifically for __application__ or by third part
 * __templates__
-* __locale__: translations
-* __src__: files that are source for specific tasks but are not to be directly used into __application__, such as sass .scss files
+* __locales__: translations
+* __sources__: files that are source for specific tasks but are not to be directly used into __application__, such as sass .scss files
 
 #### Internazionalization
 In any context where files contain text to be exposed, specific folders and files should be always used langauge. Folders should be nominated by language code (i.e. 'en' or 'en_UK'). Language codes should follow a [convention](https://en.wikipedia.org/wiki/Language_code).
