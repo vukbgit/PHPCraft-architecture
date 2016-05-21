@@ -100,6 +100,7 @@ Folders should be organized according to vertical and horizontal logic as more c
     * libraries
       * acme.js
       * third-part-js-library-folder _not included through composer_
+
 Obviously other structures are possible, for example do not put at top level __private__ and __public__ folders but __global__ and __acme__ ones instead and fork inside them private and public code but it would be necessary to write two .htaccess files (instead of just one) to forbid access to private code. Options must be carefully weighted.
 
 ### Special Folders
