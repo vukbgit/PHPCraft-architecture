@@ -2,6 +2,7 @@
 This document should depict the process of building a website using the PHPCraft Manifest as a guide.
 
 ### Conventions
+* __your-domain.tld__: application internet domain, to be substituted everywhere in code examples real application internet domain
 * __application-name__: the name of the application currently developed, to be substituted everywhere in code examples and folder and file names with real application name
 
 ### Prerequisites
@@ -51,15 +52,19 @@ echo 'test application bootstrap file';
 * into site root make a folder named __public__ with subfolder __application-name__
 * into __public/application-name__ make the subfolder __procedures__
 * make file __public/application-name/procedures/index.php__:
-  * store the name of the application and the relative path from __index.php__ to the top level of application. These informations are used from this point till the end of the script so they must be defined here
+  * just for the moment, as the very first thing, turn on PHP errors display at maximum level
+  * store the name of the application and the relative path from __index.php__ to the root level of application. These informations are used from this point till the end of the script so they must be defined here
   * include the bootstrap file
 ```php
 <?php
+ini_set("display_errors", 1);
+error_reporting(E_ALL);
 define('APPLICATION','application-name');
-define('PATH_TO_ROOT','../../');
+define('PATH_TO_ROOT','../../../');
 //bootstrap
-require PATH_TO_ROOT . 'private/' . APPLICATION . '/' . $configuration['domains'][$_SERVER['HTTP_HOST']]['environment'] . '.bootstrap.php';
+require PATH_TO_ROOT . 'private/' . APPLICATION . '/procedures/bootstrap.php';
 ```
+  * test the url __your-domain.tld/public/application-name/procedures/index.php__, the text `test application bootstrap file` should appear otherwise follow any error indications.
 ### __.htaccess__
 ```
 Options +FollowSymlinks
