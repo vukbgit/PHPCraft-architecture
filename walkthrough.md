@@ -40,7 +40,7 @@ return [
     ]
 ];
 ```
-* make the bootstrap file __private/application-name/procedures/bootstrap.php__ with some test code:
+* make the application bootstrap file __private/application-name/procedures/bootstrap.php__ with some test code:
 ```php
 <?php
 echo 'test bootstrap file';
