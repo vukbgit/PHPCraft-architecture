@@ -60,10 +60,10 @@ In any context where files contain text to be exposed, specific folders and file
 ## Filesystem
 Folders should be organized according to vertical and horizontal logic as more convenient. Obviously multiple structures are possible so options must be carefully weighted.
 My current choice is:
-* scope
-  * context
-    * function
-      * application level files
+* scope _(so that it is possible to protect private code in one move)_
+  * context _(so that it is possible to port global code in one move)_
+    * function _(so that files with similar content are nearby and can be compared easily)_
+      * application level files _(so that is possible to order code with similar content according to application hierarchy)_
       * area folder (if necessary)
         * subject folder (if necessary)
 
