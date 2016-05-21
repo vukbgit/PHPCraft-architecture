@@ -1,6 +1,9 @@
 ### Premise
 This document should depict the process of building a website using the PHPCraft Manifest as a guide.
 
+### Conventions
+* __application-name__: the name of the application currently developed, to be substituted everywhere in code examples with real application name
+
 ### Prerequisites
 * Apache2:
   * allow .htacces files use
