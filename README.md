@@ -55,7 +55,18 @@ An application contains at least one area, an area contains at least one subject
 In any context where files contain text to be exposed, specific folders and files should be always used langauge. Folders should be nominated by language code (i.e. 'en' or 'en_UK'). Language codes should follow a [convention](https://en.wikipedia.org/wiki/Language_code).
 
 ## Filesystem
-Folders should be organized according to vertical and horizontal logic as more convenient. An example for 'Acme' application:
+Folders should be organized according to vertical and horizontal logic as more convenient. Obviously multiple structures are possible so options must be carefully weighted.
+My current choice is:
+* scope
+  * context
+    * function
+      * application level files
+      * area folder (if necessary)
+        * subject folder (if necessary)
+
+, for example do not put at top level __private__ and __public__ folders but __global__ and __acme__ ones instead and fork inside them private and public code but it would be necessary to write two .htaccess files (instead of just one) to forbid access to private code. 
+
+An example for 'Acme' application:
 * private
   * .htaccess _to prevent direct client access to contained files_
   * global
@@ -68,9 +79,12 @@ Folders should be organized according to vertical and horizontal logic as more c
       * list.scss _sass file for standard lists style_
   * acme
     * configurations
-      * acme.ini _application settings_
+      * application.php _settings that every application has with values specific for Acme_
+      * acme.ini _Acme domain logic specific settings_
       * routes.php _routes definition_
-    * libraries
+      * ... _other configuration files at application level_
+      * area_1_folder _each area likely needs specific configuration_ 
+    * libraries _libraries can be shared by different areas (i.e. backedn and frontend)_
       * Subject1.php _library to handle subject 1 logic_
       * Subject2.php _library to handle subject 2 logic_
     * locale
@@ -101,7 +115,14 @@ Folders should be organized according to vertical and horizontal logic as more c
       * acme.js
       * third-part-js-library-folder _not included through composer_
 
-Obviously other structures are possible, for example do not put at top level __private__ and __public__ folders but __global__ and __acme__ ones instead and fork inside them private and public code but it would be necessary to write two .htaccess files (instead of just one) to forbid access to private code. Options must be carefully weighted.
+
+
+So for example
+* private
+  * global
+  * application-name
+  * 
+* public
 
 ### Special Folders
 * __secret__: files used for application developement and mantainence; folder is http protected
