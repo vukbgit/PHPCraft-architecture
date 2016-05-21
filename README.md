@@ -30,7 +30,7 @@ Follow these rules in order: apply each rule as long as it does not conflict wit
 * __subject__: a set of pages into an __area__ that performs operations about the same coherent portion of domain logic (i.e. products, customers)
 * __action__: the set of operations performed by a page over a __subject__
  
-An application contains at least one area, a area contains at least one subject, a subject contains at least one action
+An application contains at least one area, an area contains at least one subject, a subject contains at least one action
 
 ### Horizontal Criteria
 #### Scope
