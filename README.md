@@ -62,14 +62,14 @@ Folders should be organized according to vertical and horizontal logic as more c
       * environment.php _handles developement/production logic_
       * http.php _instantiate the http class_
       * router.php _instantiate the router class and handles routing logic_
-    * src
+    * sources
       * form.scss _sass file for standard forms style_
       * list.scss _sass file for standard lists style_
   * acme
-    * conf
+    * configurations
       * acme.ini _application settings_
       * routes.php _routes definition_
-    * lib
+    * libraries
       * Subject1.php _library to handle subject 1 logic_
       * Subject2.php _library to handle subject 2 logic_
     * locale
@@ -96,12 +96,10 @@ Folders should be organized according to vertical and horizontal logic as more c
       * header.html _header template common to whole application_
 * public
   * acme
-    * lib
+    * libraries
       * acme.js
       * third-part-js-library-folder _not included through composer_
 
 ### Special Folders
 * __secret__: files used for application developement and mantainence; folder is http protected
-* __vendor__: composer folder for storing libraries
-
-## .htacces
+* __vendor__: Composer folder for storing libraries
