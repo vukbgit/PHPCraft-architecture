@@ -39,6 +39,7 @@ An application contains at least one area, an area contains at least one subject
 #### Environment
 * __development__
 * __production__
+
 #### Scope
 * __private__: files protected (by .htaccess rules) from direct browser access
 * __public__: files that can be requested by browser
