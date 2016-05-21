@@ -1,3 +1,6 @@
+### Premise
+This document should depict the process of building a website using the PHPCraft Manifest as a guide.
+
 ### Prerequisites
 * Apache2:
   * allow .htacces files use
