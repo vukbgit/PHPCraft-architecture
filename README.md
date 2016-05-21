@@ -34,7 +34,7 @@ An application contains at least one area, an area contains at least one subject
 
 ### Horizontal Criteria
 #### Scope
-* __private__: files protected (by .htaccess rules and/or login) from direct browser access
+* __private__: files protected (by .htaccess rules) from direct browser access
 * __public__: files that can be requested by browser
 
 #### Context
