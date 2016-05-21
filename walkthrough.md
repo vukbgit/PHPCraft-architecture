@@ -8,6 +8,7 @@ This document should depict the process of building a website using the PHPCraft
 ### Prerequisites
 * Apache2:
   * allow .htacces files use
+  * module mod_rewrite enabled
 
 ### Basic folders and files
 * into site root make a folder named __private__ with the subfolders __global__ and __application-name__
@@ -64,8 +65,12 @@ define('PATH_TO_ROOT','../../../');
 //bootstrap
 require PATH_TO_ROOT . 'private/' . APPLICATION . '/procedures/bootstrap.php';
 ```
-  * test the url __your-domain.tld/public/application-name/procedures/index.php__, the text `test application bootstrap file` should appear otherwise follow any error indications.
-### __.htaccess__
+  * test the url __http://your-domain.tld/public/application-name/procedures/index.php__, the text `test application bootstrap file` should appear otherwise follow any error indications.
+
+### root __.htaccess__
+* switch on apache rewrite engine (FollowSymlinks is required)
+* set the default route for plain domain request
+* route every other request (excpet for existing files and directories, such as css or js files) to __index.php__
 ```
 Options +FollowSymlinks
 RewriteEngine on
@@ -74,7 +79,7 @@ RewriteRule ^$ http://your-domain.tld/default-application-subject [R,L]
 #requests pointing to real files are not redirected
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ public/application-name/index.php [NC]
+RewriteRule ^(.*)$ public/application-name/procedures/index.php [NC]
 ```
 ### bootstrap file
 
