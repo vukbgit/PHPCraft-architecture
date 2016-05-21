@@ -79,3 +79,5 @@ RewriteRule ^(.*)$ public/application-name/index.php [NC]
 phone = '__1234.5678.90__'
 a-certain-property = 'its-value'
   ```
+### Environments
+The match between visited domain and environment (development or production) it is not used at the moment since the problem of how to set a development environment is still open: there is the [idea](https://www.smashingmagazine.com/2015/07/development-to-deployment-workflow/) to use [Vagrant](https://www.vagrantup.com/) and a repository service or to host a GIT server upon server machine
