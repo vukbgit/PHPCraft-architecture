@@ -14,7 +14,7 @@ This document should depict the process of building a website using the PHPCraft
 deny from all
 ```
 * make the main configuration file which contains informations likely to be needed by every application (i.e. domains definition, database account), for portability it's useful to name it 'application', it has a tree structure so a php or json file is needed (use json if it has to be red by different technologies like PHP and js).
-  make __private/application-name/conf/application.php__ (values to be adapted)
+  make __private/application-name/configurations/application.php__ (values to be adapted)
 ```php
 <?php
 return [
