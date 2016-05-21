@@ -43,10 +43,11 @@ return [
 * make the application bootstrap file __private/application-name/procedures/bootstrap.php__ with some test code:
 ```php
 <?php
-echo 'test bootstrap file';
+echo 'test application bootstrap file';
 ```
 * into site root make a folder named __public__ with subfolder __application-name__
-* make file __public/index.php__:
+* into __public/application-name__ make the subfolder __procedures__
+* make file __public/application-name/procedures/index.php__:
   * store the name of the application (from now on 'application-name') and the relative path from __index.php__ to the top level of application. These informations are used from this point till the end of the script so they must be defined here
   * include the bootstrap file
 ```php
