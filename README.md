@@ -4,7 +4,7 @@
 Expose considerations and solutions about writing websites without using a framework.
 
 ## Acknowledgement
-This is a work based on my experience 'on the field' but many of the ideas and tha base for a more structured and modern approach came indisputably from the [Patrick Louys no framework tutorial](https://github.com/PatrickLouys/no-framework-tutorial), thank you.
+This is a work based on my experience 'on the field' but many of the ideas and the base for a more structured and modern approach came indisputably from the [Patrick Louys no framework tutorial](https://github.com/PatrickLouys/no-framework-tutorial), thank you.
 
 ## Premises
 The following considerations apply primarily to a Linux + Apache + PHP environment even if, at least part of them, could be extended to other technologies and platforms.
