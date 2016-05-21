@@ -7,7 +7,7 @@ This document should depict the process of building a website using the PHPCraft
 
 ### Basic folders and files
 * into site root make a folder named __private__ with the subfolders __global__ and __application-name__
-* into __private/application-name__ folder make the subfolders __conf__ and __procedures__
+* into __private/application-name__ folder make the subfolders __configurations__ and __procedures__
 * make file __private/.htaccess__ and prevent direct access to contained files:
 ```
 # Order Deny,Allow
