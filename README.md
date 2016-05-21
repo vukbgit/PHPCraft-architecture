@@ -114,7 +114,7 @@ An example for 'Acme' application:
       * acme.js
       * third-part-js-library-folder _not included through composer_
 
-A variant could be not to put into top level __private__ and __public__ folders but __global__ and __acme__ ones instead and fork inside them private and public code but it would be necessary to write two .htaccess files (instead of just one) to forbid access to private code. Also there is the matter of folder and files for __area__ and __subject__ level: into __private/acme/configurations__ is it better to put a __backend.ini__ file directly into or create a __backend__ folder to store it? I think that if there is only one configuration file for backend it would be redoundant to create a folder but on the other hand if the file would grow too bigger splitting it into different files and moving them into a specific folder could break the application.
+A variant could be not to put into top level __private__ and __public__ folders but __global__ and __acme__ ones instead and fork inside them private and public code but it would be necessary to write two .htaccess files (instead of just one) to forbid access to private code. Also there is the matter of folder and files for __area__ and __subject__ level: into __private/acme/configurations__ is it better to put a __backend.ini__ file directly into or create a __backend__ folder to store it? I think that if there is only one backend configuration file it would be redundant to create a folder but on the other hand, if the file would grow too big, splitting it lately into different files and moving them into a new folder could break the application.
 
 ### Special Folders
 * __secret__: files used for application developement and mantainence; folder is http protected
