@@ -69,9 +69,14 @@ require PATH_TO_ROOT . 'private/' . APPLICATION . '/procedures/bootstrap.php';
 
 ### root __.htaccess__
 * make the file .htaccess into root folder
-* switch on apache rewrite engine (FollowSymlinks is required)
-* set the default route for plain domain request
-* route every other request (excpet for existing files and directories, such as css or js files) to __index.php__
+* to test that .htaccess file really are processed:
+  * write some gibberish inside (like `xyz`)
+  * test the url __http://your-domain.tld
+  * you should get a 500 Internal Server Error
+* clean the gibberish and put the above code which:
+  * switches on apache rewrite engine (FollowSymlinks is required)
+  * sets the default route for bare domain request
+  * routes every other request (except for existing files and directories, such as css or js files) to __index.php__
 ```
 Options +FollowSymlinks
 RewriteEngine on
