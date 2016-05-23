@@ -4,6 +4,9 @@ This document should depict the process of building a website using the PHPCraft
 ### Conventions
 * __your-domain.tld__: application internet domain, to be substituted everywhere in code examples real application internet domain
 * __application-name__: the name of the application currently developed, to be substituted everywhere in code examples and folder and file names with real application name
+* __application root__: the folder where the application resides, the folder of __your-domain.tld__ webspace where are created at least the folders _private_, _public_ and __vendor__ 
+* __subject__: see the README doc, it can be thought as a section of the application and/or a db table, some concept the application is able to work upon and/or display data about; for example it could be 'products'
+* __action__: see the README doc, a single operation upon a __subject__, like 'save', 'list', 'delete'
 
 ### Prerequisites
 * Apache2:
@@ -11,7 +14,7 @@ This document should depict the process of building a website using the PHPCraft
   * module mod_rewrite enabled
 
 ### Basic folders and files
-* into site root make a folder named __private__ with the subfolders __global__ and __application-name__
+* into __application root__ make a folder named __private__ with the subfolders __global__ and __application-name__
 * into __private/application-name__ folder make the subfolders __configurations__ and __procedures__
 * make file __private/.htaccess__ and prevent direct access to contained files:
 ```
@@ -78,18 +81,28 @@ require PATH_TO_ROOT . 'private/' . APPLICATION . '/procedures/bootstrap.php';
 * to test that the Apache module mod\_rewrite is enabled look for 'mod\_rewrite' into index.php output
 * clean the gibberish and put the above code which:
   * switches on apache rewrite engine (FollowSymlinks is required)
-  * sets the default route for bare domain request
+  * sets the default route ('default-application-subject' below) for bare domain request in the form of 'subject[/action]', action is not mandatory since it is reasonable to set a default (and possibly only) action for the subject; i.e. 'products' or 'products/browse'
   * routes every other request (except for existing files and directories, such as css or js files) to __index.php__
 ```
 Options +FollowSymlinks
 RewriteEngine on
 #default domain page
-RewriteRule ^$ http://your-domain.tld/default-application-subject [R,L]
+RewriteRule ^$ default-application-subject [R,L]
 #requests pointing to real files are not redirected
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ public/application-name/procedures/index.php [NC]
 ```
+#### Application root inside a webspace subfolder
+If the __application root__ is NOT into the top level folder of the domain web space it is necessary to use the full URLs, so rows number 4 and 8 must be changed:
+```
+[...]
+RewriteRule ^$ http://your-domain.tld/path-to-installation-root/default-application-subject [R,L]
+[...]
+RewriteRule ^(.*)$ http://your-domain.tld/path-to-installation-root/public/application-name/procedures/index.php [NC]
+```
+
+
 ### bootstrap file
 
   * configuration information specific to the domain logic ar that can take many forms (i.e. address that can be split or compact), use the most appropriate file type, in this case .ini:
@@ -98,5 +111,6 @@ RewriteRule ^(.*)$ public/application-name/procedures/index.php [NC]
 phone = '__1234.5678.90__'
 a-certain-property = 'its-value'
   ```
+  
 ### Environments
 The match between visited domain and environment (development or production) at the moment has no conrete consequences since the problem of how to set a development environment is still open: there is the [idea](https://www.smashingmagazine.com/2015/07/development-to-deployment-workflow/) to use [Vagrant](https://www.vagrantup.com/) and a repository service or to host a GIT server upon server machine
