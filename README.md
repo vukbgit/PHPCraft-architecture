@@ -21,7 +21,7 @@ The following considerations apply primarily to a Linux + Apache + PHP environme
 5. __be frugal__: just load, include, define, instance only resources that are really going to be used by the page
 6. __be indipendent__: when a third part library is used, avoid tight dependency thorugh [adapter pattern](https://en.wikipedia.org/wiki/Adapter_pattern) custom classes
 7. __enjoy__: write code that is comfortable for YOU to use
-8. __recycle__: use code you ha written for past applications and write code that you can used in future applications
+8. __recycle__: use code you have written for past applications and write code that you will be able to use in future applications
 
 Follow these rules in order: apply each rule as long as it does not conflict with preceding rules.
 
