@@ -68,6 +68,7 @@ require PATH_TO_ROOT . 'private/' . APPLICATION . '/procedures/bootstrap.php';
   * test the url __http://your-domain.tld/public/application-name/procedures/index.php__, the text `test application bootstrap file` should appear otherwise follow any error indications.
 
 ### root __.htaccess__
+* make the file .htaccess into root folder
 * switch on apache rewrite engine (FollowSymlinks is required)
 * set the default route for plain domain request
 * route every other request (excpet for existing files and directories, such as css or js files) to __index.php__
