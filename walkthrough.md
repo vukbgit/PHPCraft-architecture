@@ -37,11 +37,11 @@ return [
     'basePath' => '/',
     'languages' => ['it','en'], //implemented languages
     'database' => [ //database account (when present)
-        'driver' => '_mysql_',
-        'host' => '_localhost_',
-        'username' => '_db-username_',
-        'password' => '_db-password_',
-        'database' => '_db-name_'
+        'driver' => 'mysql',
+        'host' => 'localhost',
+        'username' => 'db-username',
+        'password' => 'db-password',
+        'database' => 'db-name'
     ]
 ];
 ```
