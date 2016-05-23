@@ -4,7 +4,7 @@ This document should depict the process of building a website using the PHPCraft
 ### Conventions
 * __your-domain.tld__: application internet domain, to be substituted everywhere in code examples real application internet domain
 * __application-name__: the name of the application currently developed, to be substituted everywhere in code examples and folder and file names with real application name
-* __application root__: the folder where the application resides, the folder of __your-domain.tld__ webspace where are created at least the folders _private_, _public_ and __vendor__ 
+* __application-root__: the folder where the application resides, the folder of __your-domain.tld__ webspace where are created at least the folders _private_, _public_ and __vendor__ 
 * __subject__: see the README doc, it can be thought as a section of the application and/or a db table, some concept the application is able to work upon and/or display data about; for example it could be 'products'
 * __action__: see the README doc, a single operation upon a __subject__, like 'save', 'list', 'delete'
 
@@ -14,7 +14,7 @@ This document should depict the process of building a website using the PHPCraft
   * module mod_rewrite enabled
 
 ### Basic folders and files
-* into __application root__ make a folder named __private__ with the subfolders __global__ and __application-name__
+* into __application-root__ make a folder named __private__ with the subfolders __global__ and __application-name__
 * into __private/application-name__ folder make the subfolders __configurations__ and __procedures__
 * make file __private/.htaccess__ and prevent direct access to contained files:
 ```
@@ -55,11 +55,11 @@ echo '<pre>';
 print_r(apache_get_modules());
 echo '</pre>';
 ```
-* into site root make a folder named __public__ with subfolder __application-name__
+* into __application-root__ make a folder named __public__ with subfolder __application-name__
 * into __public/application-name__ make the subfolder __procedures__
 * make file __public/application-name/procedures/index.php__:
   * just for the moment, as the very first thing, turn on PHP errors display at maximum level
-  * store the name of the application and the relative path from __index.php__ to the root level of application. These informations are used from this point till the end of the script so they must be defined here
+  * store the name of the application and the relative path from __index.php__ to the __application-root__. These informations are used from this point till the end of the script so they must be defined here
   * include the bootstrap file
 ```php
 <?php
@@ -72,8 +72,8 @@ require PATH_TO_ROOT . 'private/' . APPLICATION . '/procedures/bootstrap.php';
 ```
   * test the url __http://your-domain.tld/public/application-name/procedures/index.php__, the duump of the `apache_get_modules` function should be outputted.
 
-### root __.htaccess__
-* make the file .htaccess into root folder
+### Application-root .htaccess file
+* make the file .htaccess into __application-root__
 * to test that .htaccess file really are processed:
   * write some gibberish inside (like `xyz`)
   * test the url __http://your-domain.tld
@@ -93,13 +93,13 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ public/application-name/procedures/index.php [NC]
 ```
-#### Application root inside a webspace subfolder
+#### Application-root inside a webspace subfolder
 If the __application root__ is NOT into the top level folder of the domain web space it is necessary to use the full URLs, so rows number 4 and 8 must be changed:
 ```
 [...]
-RewriteRule ^$ http://your-domain.tld/path-to-installation-root/default-application-subject [R,L]
+RewriteRule ^$ http://your-domain.tld/path-to-application-root/default-application-subject [R,L]
 [...]
-RewriteRule ^(.*)$ http://your-domain.tld/path-to-installation-root/public/application-name/procedures/index.php [NC]
+RewriteRule ^(.*)$ http://your-domain.tld/path-to-application-root/public/application-name/procedures/index.php [NC]
 ```
 
 
