@@ -70,7 +70,7 @@ define('PATH_TO_ROOT','../../../');
 //bootstrap
 require PATH_TO_ROOT . 'private/' . APPLICATION . '/procedures/bootstrap.php';
 ```
-  * test the url __http://your-domain.tld/public/application-name/procedures/index.php__, the duump of the `apache_get_modules` function should be outputted.
+  * test the url __http://your-domain.tld/public/application-name/procedures/index.php__, the dump of the `apache_get_modules` function should be outputted.
 
 ### Application-root .htaccess file
 * make the file .htaccess into __application-root__
