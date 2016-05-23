@@ -4,7 +4,7 @@ This document should depict the process of building a website using the PHPCraft
 ### Conventions
 * __your-domain.tld__: application internet domain, to be substituted everywhere in code examples real application internet domain
 * __application-name__: the name of the application currently developed, to be substituted everywhere in code examples and folder and file names with real application name
-* __application-root__: the folder where the application resides, the folder of __your-domain.tld__ webspace where are created at least the folders _private_, _public_ and __vendor__ 
+* __application-root__: the folder where the application resides, the folder of __your-domain.tld__ webspace where are created at least the folders _private_, _public_ and _vendor_ 
 * __subject__: see the README doc, it can be thought as a section of the application and/or a db table, some concept the application is able to work upon and/or display data about; for example it could be 'products'
 * __action__: see the README doc, a single operation upon a __subject__, like 'save', 'list', 'delete'
 
