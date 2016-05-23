@@ -45,10 +45,12 @@ return [
     ]
 ];
 ```
-* make the application bootstrap file __private/application-name/procedures/bootstrap.php__ with some test code:
+* make the application bootstrap file __private/application-name/procedures/bootstrap.php__ with some test code (which will come in handy later):
 ```php
 <?php
-echo 'test application bootstrap file';
+echo '<pre>';
+print_r(apache_get_modules());
+echo '</pre>';
 ```
 * into site root make a folder named __public__ with subfolder __application-name__
 * into __public/application-name__ make the subfolder __procedures__
@@ -65,7 +67,7 @@ define('PATH_TO_ROOT','../../../');
 //bootstrap
 require PATH_TO_ROOT . 'private/' . APPLICATION . '/procedures/bootstrap.php';
 ```
-  * test the url __http://your-domain.tld/public/application-name/procedures/index.php__, the text `test application bootstrap file` should appear otherwise follow any error indications.
+  * test the url __http://your-domain.tld/public/application-name/procedures/index.php__, the duump of the `apache_get_modules` function should be outputted.
 
 ### root __.htaccess__
 * make the file .htaccess into root folder
@@ -73,6 +75,7 @@ require PATH_TO_ROOT . 'private/' . APPLICATION . '/procedures/bootstrap.php';
   * write some gibberish inside (like `xyz`)
   * test the url __http://your-domain.tld
   * you should get a 500 Internal Server Error
+* to test that the Apache module mod\_rewrite is enabled look for 'mod\_rewrite' into index.php output
 * clean the gibberish and put the above code which:
   * switches on apache rewrite engine (FollowSymlinks is required)
   * sets the default route for bare domain request
