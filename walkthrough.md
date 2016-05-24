@@ -148,10 +148,11 @@ Make __composer.json__ with the properties describing tha application (the requi
 
 #### Basic libraries
 
-[Whoops](https://github.com/filp/whoops) to print useful informations about PHP errors and [REF] to dump variable informations:
+[Whoops](https://github.com/filp/whoops) to print useful informations about PHP errors and [REF] to dump variable informations, other libraries are described later on:
 ```
 composer require filp/whoops
 composer require digitalnature/php-ref
+composer require asika/http
 ```
 To keep the application independent from third part libraries these will be used through adapter classes, hosted on [github](https://github.com) and managed through [packagist](https://packagist.org). These libraries must be added manually to composer.json because thay are still in development state:
 ```json
