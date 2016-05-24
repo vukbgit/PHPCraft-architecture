@@ -118,10 +118,19 @@ php -r "unlink('composer-setup.php');"
 
 ```
 Beware that the hash verification key may change (due to version upgrade I guess), in case of any problem refer to that [Composer download page](https://getcomposer.org/download/) for updated instructions.
-It is possible to make composer available system wide but it requires super user privileges; it allows to call composer by runnign `composer` instead of `php composer.phar`:
+It is possible to make composer available system wide but it requires super user privileges; this allows to call composer by running `composer` instead of `php composer.phar`:
 ```
 sudo mv composer.phar /usr/local/bin/composer
 ```
+From now on it will be supposed that Composer is globally installed on tha server, otherwise it mus be installed locally and _vendor_ folder, _composer.json_ and _composer.lock_ must be manually kept in sync on the server
+
+### Debug libraries
+[Whoops](https://github.com/filp/whoops) to print useful informations about PHP errors and [REF] to dump variable informations:
+```bash
+composer require filp/whoops
+composer require digitalnature/php-ref
+```
+
 
 ### Bootstrap file
 
