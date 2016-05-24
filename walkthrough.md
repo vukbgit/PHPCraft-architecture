@@ -148,7 +148,7 @@ Make __composer.json__ with the properties describing tha application (the requi
 
 #### Basic libraries
 
-[Whoops](https://github.com/filp/whoops) to print useful informations about PHP errors and [REF] to dump variable informations, other libraries are described later on:
+[Whoops](https://github.com/filp/whoops) to print useful informations about PHP errors and [REF](https://github.com/digitalnature/php-ref) to dump variable informations, other libraries are described later on:
 ```
 composer require filp/whoops
 composer require digitalnature/php-ref
@@ -160,7 +160,7 @@ To keep the application independent from third part libraries these will be used
  ...
  "require": {
    ...
-   "phpcraft/container": "@dev"
+   "phpcraft/container": "@dev",
  }
 }
 
@@ -266,8 +266,9 @@ Using a [PSR7 HTTP message interfaces](http://www.php-fig.org/psr/psr-7/) derive
 ```
 composer require asika/http
 ```
-make make __private/global/procedures/http.php__:
+make __private/global/procedures/http.php__:
 ```php
+<?php
 // container definition
 $container->implementationToInterface('Psr\Http\Message\RequestInterface', 'Asika\Http\Request', true);
 $container->implementationToInterface('Psr\Http\Message\ResponseInterface', 'Asika\Http\Response', true);
@@ -284,4 +285,23 @@ include it into __private/application-name/procedures/bootstrap.php__:
 ```php
 // http
 $http = require PATH_TO_ROOT . 'private/global/procedures/http.php';
+```
+#### Cookies
+If the application makes use of cookie add to the 'require' section of composer.json:
+```json
+   "phpcraft/cookie": "@dev"
+```
+make __private/global/procedures/cookies.php__:
+```php
+<?php
+// container definition
+$container->implementationToInterface('PHPCraft\Cookie\CookieInterface', 'PHPCraft\Cookie\CookieDflydevFigCookiesAdapter', true);
+// request
+$cookies = $container->make('PHPCraft\Cookie\CookieInterface');
+return $cookies;
+```
+include it into __private/application-name/procedures/bootstrap.php__:
+```php
+// cookies
+$http->cookies = require PATH_TO_ROOT . 'private/global/procedures/http.php';
 ```
