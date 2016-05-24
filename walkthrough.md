@@ -14,6 +14,9 @@ This document should depict the process of building a website using the PHPCraft
   * allow .htacces files use
   * module mod_rewrite enabled
 
+Optional
+* GIT (installed on server)
+
 ### Basic folders and files
 * into __application-root__ make a folder named __private__ with the subfolders __global__ and __application-name__
 * into __private/global__ folder make the subfolder __procedures__
@@ -150,11 +153,21 @@ Make __composer.json__ with the properties describing tha application (the requi
 composer require filp/whoops
 composer require digitalnature/php-ref
 ```
-To keep the application independent from third part libraries these will be used through adapter classes, hosted on [github](https://github.com) and managed through [packagist](https://packagist.org). These libraries must be added manually to composer.json becouse thay are still in development state:
+To keep the application independent from third part libraries these will be used through adapter classes, hosted on [github](https://github.com) and managed through [packagist](https://packagist.org). These libraries must be added manually to composer.json because thay are still in development state:
 ```json
+{
+ ...
+ "require": {
+   ...
+   "phpcraft/container": "@dev"
+ }
+}
 
 ```
-
+and update composer:
+```
+composer update
+```
 
 ### Application Bootstrap file
 It is responsible to:
@@ -229,8 +242,45 @@ Require the file into __private/application-name/procedures/bootstrap.php__ (ove
 require PATH_TO_ROOT . 'private/global/procedures/environment.php';
 ```
 Test __http://your-domain.tld__, a blank page should appear.
+Into _public/application-name/procedures/index.php_ delete the first two lines of code (with `ini_set` and `error_reporting`) since no longer needed.
   
 ##### a note
 The match between visited domain and environment (development or production) at the moment has no concrete consequences since the problem of how to set a development environment is still open: there is the [idea](https://www.smashingmagazine.com/2015/07/development-to-deployment-workflow/) to use [Vagrant](https://www.vagrantup.com/) and a repository service or to host a GIT server upon server machine
 
-#### Injector
+#### Dependency Injection Container
+make __private/global/procedures/dependency_injection.php__:
+```php
+$baseContainer = new \Auryn\Injector;
+$container = new \PHPCraft\Container\ContainerRdlowreyAurynAdapter($baseContainer);
+return $container;
+```
+include it into __private/application-name/procedures/bootstrap.php__:
+```php
+// dependency injection
+$container = require PATH_TO_ROOT . 'private/global/procedures/dependency_injection.php';
+```
+
+#### HTTP
+Using a [PSR7 HTTP message interfaces](http://www.php-fig.org/psr/psr-7/) derived class like [asika/http](https://github.com/asika32764/http) there is no need to define interface and adapter class:
+```
+composer require asika/http
+```
+make make __private/global/procedures/http.php__:
+```php
+// container definition
+$container->implementationToInterface('Psr\Http\Message\RequestInterface', 'Asika\Http\Request', true);
+$container->implementationToInterface('Psr\Http\Message\ResponseInterface', 'Asika\Http\Response', true);
+// http only object
+$http = new stdClass;
+// request
+$http->request = $container->make('Psr\Http\Message\RequestInterface');
+// response
+$http->response = $container->make('Psr\Http\Message\ResponseInterface');
+//return http object
+return $http;
+```
+include it into __private/application-name/procedures/bootstrap.php__:
+```php
+// http
+$http = require PATH_TO_ROOT . 'private/global/procedures/http.php';
+```
