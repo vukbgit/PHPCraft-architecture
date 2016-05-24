@@ -126,7 +126,7 @@ From now on it will be supposed that Composer is globally installed on tha serve
 
 ### Debug libraries
 [Whoops](https://github.com/filp/whoops) to print useful informations about PHP errors and [REF] to dump variable informations:
-```bash
+```shell
 composer require filp/whoops
 composer require digitalnature/php-ref
 ```
