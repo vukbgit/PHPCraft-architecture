@@ -5,6 +5,7 @@ This document should depict the process of building a website using the PHPCraft
 * __your-domain.tld__: application internet domain, to be substituted everywhere in code examples real application internet domain
 * __application-name__: the name of the application currently developed, to be substituted everywhere in code examples and folder and file names with real application name
 * __application-root__: the folder where the application resides, the folder of __your-domain.tld__ webspace where are created at least the folders _private_, _public_ and _vendor_ 
+* __vertical-hierarchy__: the levels application is dived into, top-down: application, area, subject, action
 * __subject__: see the README doc, it can be thought as a section of the application and/or a db table, some concept the application is able to work upon and/or display data about; for example it could be 'products'
 * __action__: see the README doc, a single operation upon a __subject__, like 'save', 'list', 'delete'
 
@@ -15,6 +16,7 @@ This document should depict the process of building a website using the PHPCraft
 
 ### Basic folders and files
 * into __application-root__ make a folder named __private__ with the subfolders __global__ and __application-name__
+* into __private/global__ folder make the subfolder __procedures__
 * into __private/application-name__ folder make the subfolders __configurations__ and __procedures__
 * make file __private/.htaccess__ and prevent direct access to contained files:
 ```
@@ -126,11 +128,59 @@ From now on it will be supposed that Composer is globally installed on tha serve
 
 ### Debug libraries
 [Whoops](https://github.com/filp/whoops) to print useful informations about PHP errors and [REF] to dump variable informations:
-```shell
+```
 composer require filp/whoops
 composer require digitalnature/php-ref
 ```
+### Procedures
+To provide a smart management of page loaded resources, procedural code is split into different files by function and these files are included at different levels of the __vertical-hierarchy__ as needed
 
+#### Environment
+make __private/global/procedures/environment.php__:
+```php
+<?php
+// composer autoload
+require PATH_TO_ROOT . 'vendor/autoload.php';
+// environment dependent settings
+$whoops = new \Whoops\Run;
+define('ENVIRONMENT',$configuration['domains'][$_SERVER['HTTP_HOST']]['environment']);
+switch(ENVIRONMENT){
+    case 'development':
+        //error reporting
+        ini_set("display_errors", 1);
+        error_reporting(E_ALL);
+        //exception handler
+        $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+    break;
+    case 'production':
+        //error reporting
+        ini_set("display_errors", 0);
+         //exception handler
+        $whoops->pushHandler(function($e){
+            global $configuration;
+            echo '
+            <style type="text/css">
+            body{font-family:Arial,sans-serif;}
+            h1{color:#f00;}
+            div{border-radius:5px;background-color:#ddd;padding:10px;}
+            </style>
+            <h1>Oh No! :-(</h1>
+            <p>Sorry for the inconvenience, please report the following error to <a href="mailto:' . $configuration['contacts']['tech'] . '">' . $configuration['contacts']['tech'] . '</a></p>
+            <div>' . $e->getMessage() .'
+            <br>(' . $e->getFile() . ':' . $e->getLine() . ')
+            </div>
+            ';
+        });
+    break;
+}
+$whoops->register();
+/** 
+* REF wrapper so that debug messages are displayed in development environment only
+*/
+function rr($v){
+    if(ENVIRONMENT == 'development') r($v);
+}
+```
 
 ### Bootstrap file
 
