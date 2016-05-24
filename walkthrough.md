@@ -124,14 +124,37 @@ It is possible to make composer available system wide but it requires super user
 ```
 sudo mv composer.phar /usr/local/bin/composer
 ```
+To verify composer.json syntax in any moment:
+```
+composer validate composer.json
+```
 From now on it will be supposed that Composer is globally installed on tha server, otherwise it mus be installed locally and _vendor_ folder, _composer.json_ and _composer.lock_ must be manually kept in sync on the server
 
-### Debug libraries
+#### Application definition
+Make __composer.json__ with the properties describing tha application (the require property should already be auto-compiled):
+* name is in the form _vendor/name_
+* license can be one of [these](https://spdx.org/licenses/) or "proprietary"
+```json
+{
+    "type": "project",
+    "name": "vendor/application-name",
+    "description": "application description",
+    "license": "application-license"
+}
+```
+
+#### Basic libraries
+
 [Whoops](https://github.com/filp/whoops) to print useful informations about PHP errors and [REF] to dump variable informations:
 ```
 composer require filp/whoops
 composer require digitalnature/php-ref
 ```
+To keep the application independent from third part libraries these will be used through adapter classes, hosted on [github](https://github.com) and managed through [packagist](https://packagist.org). These libraries must be added manually to composer.json becouse thay are still in development state:
+```json
+
+```
+
 
 ### Application Bootstrap file
 It is responsible to:
@@ -210,4 +233,4 @@ Test __http://your-domain.tld__, a blank page should appear.
 ##### a note
 The match between visited domain and environment (development or production) at the moment has no concrete consequences since the problem of how to set a development environment is still open: there is the [idea](https://www.smashingmagazine.com/2015/07/development-to-deployment-workflow/) to use [Vagrant](https://www.vagrantup.com/) and a repository service or to host a GIT server upon server machine
 
-
+#### Injector
