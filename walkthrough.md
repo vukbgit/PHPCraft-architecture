@@ -137,7 +137,15 @@ composer require digitalnature/php-ref
 It is responsible to:
 * load resources that provide application wide functionalities
 * launch the routing process that process the following levels of the __vertical-hierarchy__
+Include application configuration file into __private/application-name/procedures/bootstrap.php__:
+```
+// local configuration
+$configuration = include(PATH_TO_ROOT .'private/' . APPLICATION . '/configurations/application.php');
+```
+Test __http://your-domain.tld__, a blank page should appear.
 To manage in a smart way the loading of page resources, functionalities procedural code is broken into different files that are included at different levels of the __vertical-hierarchy__ as needed by the application. 
+
+
 
 #### Environment
 make __private/global/procedures/environment.php__:
@@ -197,6 +205,9 @@ Require the file into __private/application-name/procedures/bootstrap.php__ (ove
 // global environment
 require PATH_TO_ROOT . 'private/global/procedures/environment.php';
 ```
+Test __http://your-domain.tld__, a blank page should appear.
   
-### Environments
-The match between visited domain and environment (development or production) at the moment has no conrete consequences since the problem of how to set a development environment is still open: there is the [idea](https://www.smashingmagazine.com/2015/07/development-to-deployment-workflow/) to use [Vagrant](https://www.vagrantup.com/) and a repository service or to host a GIT server upon server machine
+##### a note
+The match between visited domain and environment (development or production) at the moment has no concrete consequences since the problem of how to set a development environment is still open: there is the [idea](https://www.smashingmagazine.com/2015/07/development-to-deployment-workflow/) to use [Vagrant](https://www.vagrantup.com/) and a repository service or to host a GIT server upon server machine
+
+
