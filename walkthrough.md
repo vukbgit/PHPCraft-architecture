@@ -133,17 +133,11 @@ composer require filp/whoops
 composer require digitalnature/php-ref
 ```
 
-### Bootstrap file
-
-  * configuration information specific to the domain logic ar that can take many forms (i.e. address that can be split or compact), use the most appropriate file type, in this case .ini:
-  make __private/application-name/conf/application-name.ini__
-  ```ini
-phone = '__1234.5678.90__'
-a-certain-property = 'its-value'
-  ```
-
-### Procedures
-To provide a smart management of page loaded resources, procedural code is split into different files by function and these files are included at different levels of the __vertical-hierarchy__ as needed
+### Application Bootstrap file
+It is responsible to:
+* load resources that provide application wide functionalities
+* launch the routing process that process the following levels of the __vertical-hierarchy__
+To manage in a smart way the loading of page resources, functionalities procedural code is broken into different files that are included at different levels of the __vertical-hierarchy__ as needed by the application. 
 
 #### Environment
 make __private/global/procedures/environment.php__:
@@ -197,6 +191,12 @@ function rr($v){
   * into development whoops with all of its inforamtions; 
   * into production a polite message with technical email contact
 * REF dump function `r()` is wrapped into `rr()` so that it is displayed only into development environment, to prevent accidentally forgotten calls not to clutter production pages (it does happen...)
+ 
+Require the file into __private/application-name/procedures/bootstrap.php__ (overwrite the three test rows):
+```
+// global environment
+require PATH_TO_ROOT . 'private/global/procedures/environment.php';
+```
   
 ### Environments
 The match between visited domain and environment (development or production) at the moment has no conrete consequences since the problem of how to set a development environment is still open: there is the [idea](https://www.smashingmagazine.com/2015/07/development-to-deployment-workflow/) to use [Vagrant](https://www.vagrantup.com/) and a repository service or to host a GIT server upon server machine
