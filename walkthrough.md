@@ -181,6 +181,12 @@ function rr($v){
     if(ENVIRONMENT == 'development') r($v);
 }
 ```
+* Main composer autoload file is loaded
+* Environment is based on the domain (as defined into __private/application-name/configurations/application.php__), of course it could be also set on some other criteria (_GET or _SESSION parameter, hard coded...)
+* Errors handlers are set:
+  * into development whoops with all of its inforamtions; 
+  * into production a polite message with technical email contact
+* REF dump function `r()` is wrapped into `rr()` so that it is displayed only into development environment, to prevent accidentally forgotten calls not to clutter production pages (it does happen...)
 
 ### Bootstrap file
 
