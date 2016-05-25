@@ -288,7 +288,7 @@ $http = require PATH_TO_ROOT . 'private/global/procedures/http.php';
 ```
 #### Cookies
 If the application makes needs cookie use a library like this one (an adapter of [dflydev-fig-cookies
-]()https://github.com/dflydev/dflydev-fig-cookies) and add to the 'require' section of composer.json:
+](https://github.com/dflydev/dflydev-fig-cookies)) and add to the 'require' section of composer.json:
 ```json
    "phpcraft/cookie": "@dev"
 ```
