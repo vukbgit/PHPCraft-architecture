@@ -403,7 +403,7 @@ if($route) {
     }
     if(!in_array(LANGUAGE, $configuration['languages'])) throw new Exception("language not into configured languages");
     //require subject procedure
-    require sprintf('%sprivate/%s/procedures/%s/%s.php', PATH_TO_ROOT, AREA, APPLICATION, SUBJECT);
+    require sprintf('%sprivate/%s/procedures/%s/%s.php', PATH_TO_ROOT, APPLICATION, AREA, SUBJECT);
 }
 ```
 This code store current area and subject into constants, load area configuration and procedures (if so set into configuration) and require a procedure file for the area/subject couple.
