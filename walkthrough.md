@@ -160,9 +160,13 @@ To keep the application independent from third part libraries the idea is:
 * develope a package with:
   * an interface to host such behaviours
   * a concrete class that implements the interface by the [adpter pattern](https://en.wikipedia.org/wiki/Adapter_pattern)
-  * host the package on [github](https://github.com)
-  * add it to [packagist](https://packagist.org)
-  * add manually to composer.json (because thay are still in development state):
+  * a composer.json that requires the third part library
+* host the package on [github](https://github.com)
+* add it to [packagist](https://packagist.org)
+* add manually to application composer.json (because thay are still in development state):
+* update composer which will take care to load also tha thir part library since it is a dependency:
+
+So add this adapter libraries to application compser.json
 ```json
 {
  ...
@@ -171,9 +175,8 @@ To keep the application independent from third part libraries the idea is:
    "phpcraft/container": "@dev",
  }
 }
-
 ```
-and update composer:
+and update composer
 ```
 composer update
 ```
