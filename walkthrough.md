@@ -324,6 +324,42 @@ update composer:
 ```bash
 composer update
 ```
+make __private/application-name/configurations/routes.php__:
+```
+<?php
+return [
+    /*
+    [
+        'method' => 'GET|POST',
+        'route' => '/route', //lang placeholder? if it has to be used for menu building it cannot contain placeholders
+        'properties' => [
+            'area' => 'area-name',
+            'action' => 'action-name',
+            'navigations' => ['menu-1-name','menu-2-name'],
+            'subject_base_url' => '' //link to be used into menu
+            'type' => 'template|include',
+            'path' => '', //template path/name into private/local/templates (without .html extension) OR include file path into private/local/includes (with extension)
+        ]
+        'routes'
+    ],
+    */
+    [
+        'method' => 'GET',
+        'route' => '/home',
+        'properties' => [
+            'area' => 'frontend',
+            'action' => 'form',
+            'navigations' => [],
+            'type' => 'include',
+            'path' => 'home.php'
+        ],
+        'routes' => [
+            
+        ]
+    ]
+];
+```
+
 make __private/global/procedures/routing.php__:
 ```php
 <?php
