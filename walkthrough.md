@@ -154,7 +154,15 @@ composer require filp/whoops
 composer require digitalnature/php-ref
 composer require asika/http
 ```
-To keep the application independent from third part libraries these will be used through adapter classes, hosted on [github](https://github.com) and managed through [packagist](https://packagist.org). These libraries must be added manually to composer.json because thay are still in development state:
+To keep the application independent from third part libraries the idea is:
+* search libraries that satisfy desired functionality (preferably on [packagist](https://packagist.org/) so that it's easier to handle dependency)
+* figure out that common behaviour of such libraries by examining at least interfaces and classes main methods
+* develope a package with:
+  * an interface to host such behaviours
+  * a concrete class that implements the interface by the [adpter pattern](https://en.wikipedia.org/wiki/Adapter_pattern)
+  * host the package on [github](https://github.com)
+  * add it to [packagist](https://packagist.org)
+  * add manually to composer.json (because thay are still in development state):
 ```json
 {
  ...
@@ -169,6 +177,7 @@ and update composer:
 ```
 composer update
 ```
+With this flow it's possible to integrate third part libraries and eventually change them later on, without too much pain, adding another adapter class that fulfills the same interface and update the dependency injection container (introduced below). From now, for (almost) every needed functionality, libraries developed by this logic by me will be used, of course they can substitute by other libraries at will.
 
 ### Application Bootstrap file
 It is responsible to:
