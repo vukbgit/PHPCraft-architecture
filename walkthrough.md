@@ -277,12 +277,18 @@ make __private/global/procedures/http.php__:
 // container definition
 $container->implementationToInterface('Psr\Http\Message\RequestInterface', 'Asika\Http\Request', true);
 $container->implementationToInterface('Psr\Http\Message\ResponseInterface', 'Asika\Http\Response', true);
+$container->implementationToInterface('Psr\Http\Message\StreamInterface', 'Asika\Http\Stream\Stream', true);
 // http only object
 $http = new stdClass;
 // request
 $http->request = $container->make('Psr\Http\Message\RequestInterface');
 // response
 $http->response = $container->make('Psr\Http\Message\ResponseInterface');
+// stream
+$http->stream = $container->make('Psr\Http\Message\StreamInterface',[
+    ':stream' => 'php://memory',
+    ':mode' => 'wb+'
+]);
 //return http object
 return $http;
 ```
