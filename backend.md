@@ -58,9 +58,17 @@ make __private/application-name/procedures/backend.php__
 require sprintf('%sprivate/%s/procedures/%s/authentication.php', PATH_TO_ROOT, APPLICATION, AREA);
 ```
 
-Add to the 'require' section of composer.json (adapter of [nikic/FastRoute](https://github.com/nikic/FastRoute)):
+Add to the 'require' section of composer.json:
 ```json
-"phpcraft/router": "@dev"
+"eonasdan/bootstrap-datetimepicker": "^4.17",
+"phpcraft/container": "@dev",
+"phpcraft/cookie": "@dev",
+"phpcraft/router": "@dev",
+"phpcraft/database": "@dev",
+"phpcraft/template": "@dev",
+"phpcraft/message": "@dev",
+"phpcraft/csv": "@dev",
+"phpcraft/subject": "@dev"
 ```
 update composer:
 ```bash
