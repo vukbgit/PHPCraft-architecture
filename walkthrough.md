@@ -166,20 +166,6 @@ To keep the application independent from third part libraries the idea is:
 * add manually to application composer.json (because thay are still in development state):
 * update composer which will take care to load also tha thir part library since it is a dependency:
 
-So add this adapter libraries to application compser.json
-```json
-{
- ...
- "require": {
-   ...
-   "phpcraft/container": "@dev",
- }
-}
-```
-and update composer
-```
-composer update
-```
 With this flow it's possible to integrate third part libraries and eventually change them later on, without too much pain, adding another adapter class that fulfills the same interface and update the dependency injection container (introduced below). From now, for (almost) every needed functionality, libraries developed by this logic by me will be used, of course they can substitute by other libraries at will.
 
 ### Application Bootstrap file
@@ -261,6 +247,14 @@ Into _public/application-name/procedures/index.php_ delete the first two lines o
 The match between visited domain and environment (development or production) at the moment has no concrete consequences since the problem of how to set a development environment is still open: there is the [idea](https://www.smashingmagazine.com/2015/07/development-to-deployment-workflow/) to use [Vagrant](https://www.vagrantup.com/) and a repository service or to host a GIT server upon server machine
 
 #### Dependency Injection Container
+Add to the 'require' section of composer.json:
+```json
+   "phpcraft/cookie": "@dev"
+```
+and update composer
+```bash
+composer update
+```
 make __private/global/procedures/dependency_injection.php__:
 ```php
 $baseContainer = new \Auryn\Injector;
