@@ -93,7 +93,7 @@ An example for 'Acme' application:
     * libraries _libraries can be shared by different areas (i.e. backend and frontend)_
       * Subject1.php _library to handle subject 1 logic_
       * Subject2.php _library to handle subject 2 logic_
-    * locale
+    * locales
       * it
         * subject1.ini _translations for subject 1_
         * subject2.ini _translations for subject 2_
