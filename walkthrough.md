@@ -340,7 +340,6 @@ return [
             'type' => 'template|include',
             'path' => '', //template path/name into private/local/templates (without .html extension) OR include file path into private/local/includes (with extension)
         ]
-        'routes'
     ],
     */
     [
@@ -352,9 +351,6 @@ return [
             'navigations' => [],
             'type' => 'include',
             'path' => 'home.php'
-        ],
-        'routes' => [
-            
         ]
     ]
 ];
