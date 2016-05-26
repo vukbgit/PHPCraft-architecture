@@ -129,7 +129,7 @@ sudo mv composer.phar /usr/local/bin/composer
 ```
 To verify composer.json syntax in any moment:
 ```
-composer validate composer.json
+composer validate
 ```
 From now on it will be supposed that Composer is globally installed on tha server, otherwise it mus be installed locally and _vendor_ folder, _composer.json_ and _composer.lock_ must be manually kept in sync on the server
 
@@ -162,7 +162,7 @@ To keep the application independent from third part libraries the idea is:
   * a composer.json that requires the third part library
 * host the package on [github](https://github.com)
 * add it to [packagist](https://packagist.org)
-* add manually to application composer.json (because thay are still in development state):
+* add manually to application composer.json (because thay are still in development state). __WARNING__: when adding lines to composr.json be careful with commas at the end of the line, use `composer validate`
 * update composer which will take care to load also tha thir part library since it is a dependency:
 
 With this flow it's possible to integrate third part libraries and eventually change them later on, without too much pain, adding another adapter class that fulfills the same interface and update the dependency injection container (introduced below). From now, for (almost) every needed functionality, libraries developed by this logic by me will be used, of course they can substitute by other libraries at will.
@@ -246,11 +246,11 @@ Into _public/application-name/procedures/index.php_ delete the first two lines o
 The match between visited domain and environment (development or production) at the moment has no concrete consequences since the problem of how to set a development environment is still open: there is the [idea](https://www.smashingmagazine.com/2015/07/development-to-deployment-workflow/) to use [Vagrant](https://www.vagrantup.com/) and a repository service or to host a GIT server upon server machine
 
 #### Dependency Injection Container
-Add to the 'require' section of composer.json:
+Add to the 'require' section of composer.json (adapter of [Auryn/injector](https://github.com/rdlowrey/Auryn)):
 ```json
    "phpcraft/container": "@dev"
 ```
-and update composer
+update composer
 ```bash
 composer update
 ```
@@ -292,10 +292,14 @@ include it into __private/application-name/procedures/bootstrap.php__:
 $http = require PATH_TO_ROOT . 'private/global/procedures/http.php';
 ```
 #### Cookies
-If the application makes needs cookie use a library like this one (an adapter of [dflydev-fig-cookies
-](https://github.com/dflydev/dflydev-fig-cookies)) and add to the 'require' section of composer.json:
+If the application makes needs cookies, add to the 'require' section of composer.json (adapter of [dflydev-fig-cookies
+](https://github.com/dflydev/dflydev-fig-cookies)):
 ```json
    "phpcraft/cookie": "@dev"
+```
+update composer:
+```bash
+composer update
 ```
 make __private/global/procedures/cookies.php__:
 ```php
@@ -310,4 +314,32 @@ include it into __private/application-name/procedures/bootstrap.php__:
 ```php
 // cookies
 $http->cookies = require PATH_TO_ROOT . 'private/global/procedures/http.php';
+```
+#### Routing
+Add to the 'require' section of composer.json (adapter of [nikic/FastRoute](https://github.com/nikic/FastRoute)):
+```json
+"phpcraft/router": "@dev"
+```
+update composer:
+```bash
+composer update
+```
+make __private/global/procedures/routing.php__:
+```php
+<?php
+// container definition
+$container->implementationToInterface('PHPCraft\Router\RouterInterface', 'PHPCraft\Router\RouterNikicFastRoute', true);
+// add routes
+$routes = require PATH_TO_ROOT . 'private/beautycare/configurations/routes.php';
+$router = $container->make('PHPCraft\Router\RouterNikicFastRoute');
+foreach($routes as $route) {
+    $router->addRoute($route['method'], $route['route'], $route['properties']);
+}
+//dispatch
+$route = $router->dispatch();
+```
+include it into __private/application-name/procedures/bootstrap.php__:
+```php
+// routing
+require PATH_TO_ROOT . 'private/global/procedures/routing.php';
 ```
