@@ -342,14 +342,10 @@ return [
     /*
     [
         'method' => 'GET|POST',
-        'route' => '/route', //lang placeholder? if it has to be used for menu building it cannot contain placeholders
+        'route' => '/route'
         'properties' => [
             'area' => 'area-name',
-            'action' => 'action-name',
-            'navigations' => ['menu-1-name','menu-2-name'],
-            'subject_base_url' => '' //link to be used into menu
-            'type' => 'template|include',
-            'path' => '', //template path/name into private/local/templates (without .html extension) OR include file path into private/local/includes (with extension)
+            'subject' => 'subject-name',
         ]
     ],
     */
@@ -358,10 +354,7 @@ return [
         'route' => '/home',
         'properties' => [
             'area' => 'frontend',
-            'action' => 'form',
-            'navigations' => [],
-            'type' => 'include',
-            'path' => 'home.php'
+            'subject' => 'home'
         ]
     ]
 ];
@@ -378,11 +371,58 @@ $router = $container->make('PHPCraft\Router\RouterNikicFastRoute');
 foreach($routes as $route) {
     $router->addRoute($route['method'], $route['route'], $route['properties']);
 }
-//dispatch
+// dispatch
 $route = $router->dispatch();
+// error
+if(!$route) {
+    $http->response = $http->response->withStatus($router->getError());
+}
+// return route
+return $route;
 ```
-include it into __private/application-name/procedures/bootstrap.php__:
+include it into __private/application-name/procedures/bootstrap.php__ and add selected route handling logic:
 ```php
 // routing
-require PATH_TO_ROOT . 'private/global/procedures/routing.php';
+$route = require sprintf('%sprivate/global/procedures/routing.php', PATH_TO_ROOT);
+if($route) {
+    //store current area and subject
+    define('AREA', $route['properties']['area']);
+    define('SUBJECT', $route['properties']['subject']);
+    //load specific area configuration and procedure if needed
+    if($configuration['areas'][AREA]['configuration']) {
+        require sprintf('%sprivate/%s/configurations/%s.php', PATH_TO_ROOT, APPLICATION, AREA);
+    }
+    if($configuration['areas'][AREA]['procedure']) {
+        require sprintf('%sprivate/%s/procedures/%s.php', PATH_TO_ROOT, APPLICATION, AREA);
+    }
+    //set current language: language is automatic if there is only one language configured otherwise it MUST be contained into route
+    try{
+        define('LANGUAGE',(count($configuration['languages']) === 1) ? $configuration['languages'][0] : $routeParameters['language']);
+    } catch(Exception $e) {
+        throw new Exception('no language defined');
+    }
+    if(!in_array(LANGUAGE, $configuration['languages'])) throw new Exception("language not into configured languages");
+    //require subject procedure
+    require sprintf('%sprivate/%s/procedures/%s.php', PATH_TO_ROOT, APPLICATION, SUBJECT);
+}
+```
+This code store current area and subject into constants, load area configuration and procedures (if so set into configuration) and require a procedure file for the area/subject couple.
+Then, always to __private/application-name/procedures/bootstrap.php__ add logic to output headers and body from the HTTP response object:
+```php
+//output
+    // set headers
+foreach ($http->response->getHeaders() as $name => $values) {
+    foreach ($values as $value) {
+        @header(sprintf('%s: %s', $name, $value), false);
+    }
+}
+    //check status code
+switch($http->response->getStatusCode()) {
+    case 404:
+        header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"); 
+    break;
+}
+    // output body
+$http->response = $http->response->withBody($http->stream);
+echo $http->response->getBody();
 ```
