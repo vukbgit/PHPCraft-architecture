@@ -42,7 +42,12 @@ return [
             'environment' => 'production'
         ]
     ],
-    'basePath' => '/',
+    'areas' => [
+        'area-name' => [
+            'configuration' => true, // whether to load private/application-name/configurations/area-name.php
+            'procedure' => false // whether to load private/application-name/procedures/area-name.php
+        ]
+    ],
     'languages' => ['it','en'], //implemented languages
     'database' => [ //database account (when present)
         'driver' => 'mysql',
