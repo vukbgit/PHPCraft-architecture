@@ -45,7 +45,8 @@ return [
     'areas' => [
         'area-name' => [
             'configuration' => true, // whether to load private/application-name/configurations/area-name.php
-            'procedure' => false // whether to load private/application-name/procedures/area-name.php
+            'procedure' => false, // whether to load private/application-name/procedures/area-name.php
+            'locale' => false // whether to load private/application-name/locale/language-code/area-name.ini
         ]
     ],
     'languages' => ['it','en'], //implemented languages
@@ -391,13 +392,6 @@ if($route) {
     //store current area and subject
     define('AREA', $route['properties']['area']);
     define('SUBJECT', $route['properties']['subject']);
-    //load specific area configuration and procedure if needed
-    if($configuration['areas'][AREA]['configuration']) {
-        require sprintf('%sprivate/%s/configurations/%s.php', PATH_TO_ROOT, APPLICATION, AREA);
-    }
-    if($configuration['areas'][AREA]['procedure']) {
-        require sprintf('%sprivate/%s/procedures/%s.php', PATH_TO_ROOT, APPLICATION, AREA);
-    }
     //set current language: language is automatic if there is only one language configured otherwise it MUST be contained into route
     try{
         define('LANGUAGE',(count($configuration['languages']) === 1) ? $configuration['languages'][0] : $routeParameters['language']);
@@ -405,6 +399,16 @@ if($route) {
         throw new Exception('no language defined');
     }
     if(!in_array(LANGUAGE, $configuration['languages'])) throw new Exception("language not into configured languages");
+    //load specific area configuration, procedure and locale if needed
+    if($configuration['areas'][AREA]['configuration']) {
+        require sprintf('%sprivate/%s/configurations/%s.php', PATH_TO_ROOT, APPLICATION, AREA);
+    }
+    if($configuration['areas'][AREA]['procedure']) {
+        require sprintf('%sprivate/%s/procedures/%s.php', PATH_TO_ROOT, APPLICATION, AREA);
+    }
+    if($configuration['areas'][AREA]['locale']) {
+        require sprintf('%sprivate/%s/locale/%s/%s.ini', PATH_TO_ROOT, APPLICATION, LANGUAGE, AREA);
+    }
     //require subject procedure
     require sprintf('%sprivate/%s/procedures/%s/%s.php', PATH_TO_ROOT, APPLICATION, AREA, SUBJECT);
 }
