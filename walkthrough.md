@@ -286,7 +286,9 @@ $container->implementationToInterface('Psr\Http\Message\StreamInterface', 'Asika
 // http only object
 $http = new stdClass;
 // request
-$http->request = $container->make('Psr\Http\Message\RequestInterface');
+$http->request = $container->make('Psr\Http\Message\RequestInterface', [
+    ':uri' => $_SERVER['REQUEST_URI']
+]);
 // response
 $http->response = $container->make('Psr\Http\Message\ResponseInterface');
 // stream
