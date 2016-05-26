@@ -148,11 +148,10 @@ Make __composer.json__ with the properties describing tha application (the requi
 
 #### Basic libraries
 
-[Whoops](https://github.com/filp/whoops) to print useful informations about PHP errors and [REF](https://github.com/digitalnature/php-ref) to dump variable informations, other libraries are described later on:
+[Whoops](https://github.com/filp/whoops) to print useful informations about PHP errors and [REF](https://github.com/digitalnature/php-ref) to dump variable informations:
 ```
 composer require filp/whoops
 composer require digitalnature/php-ref
-composer require asika/http
 ```
 To keep the application independent from third part libraries the idea is:
 * search libraries that satisfy desired functionality (preferably on [packagist](https://packagist.org/) so that it's easier to handle dependency)
