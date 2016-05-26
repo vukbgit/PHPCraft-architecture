@@ -248,7 +248,7 @@ The match between visited domain and environment (development or production) at 
 #### Dependency Injection Container
 Add to the 'require' section of composer.json:
 ```json
-   "phpcraft/cookie": "@dev"
+   "phpcraft/container": "@dev"
 ```
 and update composer
 ```bash
