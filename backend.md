@@ -12,7 +12,44 @@ composer require aura/auth
 ```
 make __private/application-name/procedures/backend/authentication.php__:
 ```php
-
+<?php
+//session
+@session_start();
+//instances
+$authFactory = $container->make('Aura\Auth\AuthFactory', [
+    ':cookie' => $_COOKIE,
+]);
+$auth = $authFactory->newInstance();
+//check current authentication status
+$logStatus = $auth->getStatus();
+define('LOGIN_PAGE', sprintf('/backend/login', PATH_TO_ROOT));
+define('LOGOUT_PAGE', sprintf('/backend/logout', PATH_TO_ROOT));
+define('DEFAULT_PAGE', sprintf('/backend/prodotti', PATH_TO_ROOT));
+//r($http->cookies->get('loginRequestedUrl'));
+switch(SUBJECT) {
+    case 'login':
+        switch($logStatus) {
+            case 'VALID':
+                $http->response = $http->response->withHeader('Location', DEFAULT_PAGE);
+            break;
+            default:
+                //check if authentication has been requested assuming that fields names are 'username' and 'password'
+            break;
+        }
+    break;
+    default:
+        switch($logStatus) {
+            case 'VALID':
+                //pass
+            break;
+            default:
+                $http->response = $http->cookies
+                    ->set('loginRequestedUrl', $http->request->getUri()->getOriginal())
+                    ->withHeader('Location', LOGIN_PAGE);
+            break;
+        }
+    break;
+}
 ```
 make __private/application-name/procedures/backend.php__
 ```php
