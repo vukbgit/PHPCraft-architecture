@@ -109,7 +109,7 @@ RewriteRule ^(.*)$ http://your-domain.tld/path-to-application-root/public/applic
 
 ### Third part libraries &amp; composer
 Soon it will be necessary to include PHP third part and custom libraries:
-* [Composer](https://getcomposer.org/) creates a 'vendor' top levele library that will be placed directly into __application-root__
+* [Composer](https://getcomposer.org/) creates a 'vendor' top level library that will be placed directly into __application-root__
 * other libraries will be placed into __private/global/libraries__ or __private/application-name/libraries__ depending on the consideration that are going to be used into ather applications or not
 
 #### Composer installation
