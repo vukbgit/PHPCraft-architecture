@@ -70,6 +70,12 @@ Add to the 'require' section of composer.json:
 "phpcraft/csv": "@dev",
 "phpcraft/subject": "@dev"
 ```
+eonasdan/bootstrap-datetimepicker is a javascript library and composer installs it (along with its dependencies, such as jquery) into a 'components' folder into top directory unless instructed differently, so add a new section into composer.json:
+```json
+"config": {
+        "component-dir": "public/global/components"
+    }
+```
 update composer:
 ```bash
 composer update
