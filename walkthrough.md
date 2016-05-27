@@ -42,6 +42,7 @@ return [
             'environment' => 'production'
         ]
     ],
+    'basePath' => '', //path from domain root to application root (with ending slash)
     'areas' => [
         'area-name' => [
             'configuration' => true, // whether to load private/application-name/configurations/area-name.php
