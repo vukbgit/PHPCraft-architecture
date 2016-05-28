@@ -73,8 +73,8 @@ echo '</pre>';
   * putting it into application-root grants that:
     * [__working directory__](http://php.net/manual/en/function.getcwd.php) (for every included script) equals to __application-root__
     * into every included script, file paths can be specified starting from __application-root__ without relative prefixes (../) regardless of included script filesystem position because:
-      * __include__ and __require__ statements search also into __working directory__, even if application-root is not explicitly specified into __include_path__
-    * other functions like [is_dir()](http://php.net/manual/en/function.is-dir.php) also look into __working directory__
+      * __include__ and __require__ statements search also into __working directory__, even if __application-root__ is not explicitly specified into [include_path](http://php.net/manual/en/ini.core.php#ini.include-path)
+      * other functions like [is_dir()](http://php.net/manual/en/function.is-dir.php) also look into __working directory__
   * just for the moment, as the very first thing, turn on PHP errors display at maximum level
   * include the bootstrap file
 ```php
