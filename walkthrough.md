@@ -107,7 +107,7 @@ RewriteRule ^$ default-application-subject [R,L]
 #requests pointing to real files are not redirected
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ public/application-name/procedures/index.php [NC]
+RewriteRule ^(.*)$ index.php [NC]
 ```
 #### Application-root inside a webspace subfolder
 If the __application-root__ is NOT into the top level folder of the domain web space it is necessary to use the full URLs, so rows number 4 and 8 must be changed:
