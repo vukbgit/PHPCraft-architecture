@@ -21,6 +21,7 @@ Optional
 * into __application-root__ make a folder named __private__ with the subfolders __global__ and __application-name__
 * into __private/global__ folder make the subfolder __procedures__
 * into __private/application-name__ folder make the subfolders __configurations__ and __procedures__
+* into __application-root__ make a folder named __public__ with subfolder __application-name__
 * make file __private/.htaccess__ and prevent direct access to contained files:
 ```
 # Order Deny,Allow
@@ -67,20 +68,22 @@ echo '<pre>';
 print_r(apache_get_modules());
 echo '</pre>';
 ```
-* into __application-root__ make a folder named __public__ with subfolder __application-name__
-* into __public/application-name__ make the subfolder __procedures__
-* make file __public/application-name/procedures/index.php__:
+
+* make file __index.php__:
+  * putting it into application-root grants that:
+    * [__working directory__](http://php.net/manual/en/function.getcwd.php) (for every included script) equals to __application-root__
+    * into every included script, file paths can be specified starting from __application-root__ without relative prefixes (../) regardless of included script filesystem position because:
+      * __include__ and __require__ statements search also into __working directory__, even if application-root is not explicitly specified into __include_path__
+    * other functions like [is_dir()](http://php.net/manual/en/function.is-dir.php) also look into __working directory__
   * just for the moment, as the very first thing, turn on PHP errors display at maximum level
-  * store the name of the application and the relative path from __index.php__ to the __application-root__. These informations are used from this point till the end of the script so they must be defined here
   * include the bootstrap file
 ```php
 <?php
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 define('APPLICATION','application-name');
-define('PATH_TO_ROOT','../../../');
 //bootstrap
-require PATH_TO_ROOT . 'private/' . APPLICATION . '/procedures/bootstrap.php';
+require 'private/' . APPLICATION . '/procedures/bootstrap.php';
 ```
   * test the url __http://your-domain.tld/public/application-name/procedures/index.php__, the dump of the `apache_get_modules` function should be outputted.
 
