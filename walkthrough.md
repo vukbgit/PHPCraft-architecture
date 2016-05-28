@@ -81,6 +81,7 @@ echo '</pre>';
 <?php
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
+//application name
 define('APPLICATION','application-name');
 //bootstrap
 require 'private/' . APPLICATION . '/procedures/bootstrap.php';
