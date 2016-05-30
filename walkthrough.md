@@ -438,3 +438,12 @@ switch($http->response->getStatusCode()) {
 $http->response = $http->response->withBody($http->stream);
 echo $http->response->getBody();
 ```
+### Installing SASS (on Ubuntu)
+Version provided by apt-get (1.9) is outdated:
+* `gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3`
+* `\curl -sSL https://get.rvm.io | bash -s stable`
+* `source /home/your-user/.rvm/scripts/rvm` (as printed on screen)
+* see ruby version avilable: `rvm list known`
+* `rvm install 2.3` (or other version)
+* check ruby version: `ruby -v`
+* `gem install sass`
