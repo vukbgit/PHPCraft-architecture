@@ -449,5 +449,5 @@ Version provided by apt-get (1.9) is outdated:
 * `gem install sass`
 
 ### Installing npm (on Ubuntu)
-A lot of useful js library are not published (or updated) on packagis: [npm](http://npmjs.com) is a dipendency manager for javascript code built upon Node.js
+On packagist a lot of useful js library are not published or kept up to date: [npm](http://npmjs.com) is a dipendency manager for javascript code built upon Node.js
 * sudo apt-get install npm
