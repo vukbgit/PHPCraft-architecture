@@ -442,11 +442,9 @@ echo $http->response->getBody();
 Version provided by apt-get (1.9) is outdated, use rvm and install as sudo for all server bash users:
 * `gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3`
 * `\curl -sSL https://get.rvm.io | sudo bash -s stable`
-* in a multiuser environment each shell user should be then added to 'rvm' group: #usermod -a -G rvm <username>
-
-[* `source /home/your-user/.rvm/scripts/rvm` (as printed on screen)]
+* in a multiuser environment each shell user should be then added to 'rvm' group: #`sudo usermod -a -G rvm <username>`
 * see ruby version avilable: `rvm list known`
-* `rvm install 2.3` (or other version)
+* `rvm install 2.4` (or other version)
 * check ruby version: `ruby -v`
 * `gem install sass`
 
