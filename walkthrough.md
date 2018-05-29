@@ -144,6 +144,11 @@ composer validate
 ```
 From now on it will be supposed that Composer is globally installed on tha server, otherwise it mus be installed locally and _vendor_ folder, _composer.json_ and _composer.lock_ must be manually kept in sync on the server
 
+It can happen that site is using a PHP version that is not system default but composer detects the default version and gives an error: in this case you need to run composer against the explicit PHP version, for example:
+```
+/opt/php-7.2.6/bin/php /usr/local/bin/composer update
+```
+
 #### Application definition
 Make __composer.json__ with the properties describing tha application (the require property should already be auto-compiled):
 * name is in the form _vendor/name_
